@@ -119,7 +119,16 @@ class Voronsoft_Due_Date_Calculator {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-voronsoft-due-date-calculator-public.php';
 
+		/**
+		 * This class defines methods & properties which handle options page logic
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-voronsoft-due-date-calculator-options-page.php';
+
+		// Init loader.
 		$this->loader = new Voronsoft_Due_Date_Calculator_Loader();
+
+		// Init options page.
+		Voronsoft_Due_Date_Calculator_Options_Page::init();
 
 	}
 
