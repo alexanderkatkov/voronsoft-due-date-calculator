@@ -1,5 +1,5 @@
 {
-  "name": "FlatPyramidWordPressTheme",
+  "name": "voronsoft-due-date-calculator",
   "version": "1.0.0",
   "description": "",
   "main": "index.php",
@@ -9,6 +9,8 @@
   "devDependencies": {
     "bower": "latest",
     "del": "latest",
+    "eslint": "^4.4.1",
+    "eslint-config-jquery": "^1.0.1",
     "gulp": "latest",
     "gulp-autoprefixer": "latest",
     "gulp-batch": "latest",
