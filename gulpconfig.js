@@ -26,7 +26,7 @@ module.exports = function () {
 			'pngSprites': './src/img/png_sprites/',
 			'js': ['./src/js/voronsoft-due-date-calculator-admin.js', './src/js/voronsoft-due-date-calculator-public.js'],
 			'less': ['./src/less/style.less', './src/less/vendor.less'],
-			'sass': ['./src/sass/voronsoft-due-date-calculator-admin.scss', './src/sass/voronsoft-due-date-calculator-public.scss'],
+			'sass': ['./src/scss/voronsoft-due-date-calculator-admin.scss', './src/scss/voronsoft-due-date-calculator-public.scss'],
 			'svg': './src/img/svg/**/*.svg',
 			'svgSprites': './src/img/svg_sprites/',
 			'font': './src/fonts/**/*.{scss,css,eot,ttf,woff,woff2,svg}',

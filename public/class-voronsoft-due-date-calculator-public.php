@@ -73,7 +73,7 @@ class Voronsoft_Due_Date_Calculator_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/css/voronsoft-due-date-calculator-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url(dirname(__FILE__)) . 'assets/css/voronsoft-due-date-calculator-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -96,7 +96,13 @@ class Voronsoft_Due_Date_Calculator_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/js/voronsoft-due-date-calculator-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url(dirname(__FILE__)) . 'assets/js/voronsoft-due-date-calculator-public.js', array( 'jquery' ), $this->version, false );
+
+		$flatpyramid_l10n = array(
+			'ajax_url' => admin_url('admin-ajax.php'),
+		);
+
+		wp_localize_script('voronsoft-due-date-calculator-public', $this->version, $flatpyramid_l10n);
 
 	}
 

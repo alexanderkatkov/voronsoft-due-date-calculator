@@ -180,10 +180,10 @@ function consoleLog(msg) {
   if (typeof (msg) === 'object') {
     for (var item in msg) {
       if (msg.hasOwnProperty(item)) {
-        gutil.log(gutil.colors.magenta(msg[item]));
+        gutil.log(gutil.colors.green(msg[item]));
       }
     }
   } else {
-    gutil.log(gutil.colors.magenta(msg));
+    gutil.log(gutil.colors.green(msg));
   }
 }

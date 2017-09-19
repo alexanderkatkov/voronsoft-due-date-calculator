@@ -124,6 +124,10 @@ class Voronsoft_Due_Date_Calculator {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-voronsoft-due-date-calculator-options-page.php';
 
+		require_once( 'controller/class-voronsoft-due-date-calculator-public-router.php' );
+		Flatpyramid_Public_Router::fp_public_router_register();
+		require_once( 'controller/class-voronsoft-due-date-calculator-controller.php' );
+
 		// Init loader.
 		$this->loader = new Voronsoft_Due_Date_Calculator_Loader();
 

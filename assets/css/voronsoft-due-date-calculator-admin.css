@@ -1,0 +1,125 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+#form__option_saved {
+  display: none;
+  border-left: 4px solid #0085ba;
+  margin-top: 1em;
+}
+
+#form__option_saved h2 {
+  background-color: white;
+  margin: 0;
+  padding: 1em;
+  display: inline-block;
+}
+
+#form-button__clone {
+  margin-top: 1em;
+}
+
+.form__line_clone .error {
+  border: 1px solid red;
+}
+
+.form__line_clone input {
+  width: 100%;
+  max-width: 100%;
+  padding: 1em;
+  margin: 0;
+}
+
+.form__line_clone textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.4em 0.4em 0.21em;
+}
+
+.form__line_clone td {
+  padding-left: 0;
+  vertical-align: -webkit-baseline-middle;
+  width: 100%;
+}
+
+.form__line_clone td:nth-child(1) {
+  width: 20%;
+}
+
+.form__line_clone .error-wrap {
+  display: none;
+  font-size: 1em;
+  color: red;
+  font-weight: 500;
+  padding-top: 0.5em;
+}
+
+.button_delete {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: block;
+  margin-top: 0.3rem;
+}
+
+.button_delete span {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.bg {
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 3px black;
+  -webkit-transition: all 0.2s linear;
+          transition: all 0.2s linear;
+}
+
+.symbol:before,
+.symbol:after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: block;
+  margin: auto;
+  border-radius: 2px;
+  content: "";
+}
+
+.symbol::before {
+  width: 1.5rem;
+  height: 0.3rem;
+  background-color: #515676;
+  -webkit-transition: background-color 1s linear;
+          transition: background-color 1s linear;
+}
+
+.button_delete:hover .bg {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.bg:target {
+  -webkit-animation: push 1s ease-out;
+          animation: push 1s ease-out;
+  -webkit-transition: all 1s linear;
+          transition: all 1s linear;
+}
+
+#minus:target {
+  background-color: #515676;
+}
+
+#minus:target + .symbol::before {
+  background-color: #def186;
+}
+
+.hide {
+  display: none;
+}
+/*# sourceMappingURL=voronsoft-due-date-calculator-admin.css.map */

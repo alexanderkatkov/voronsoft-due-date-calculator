@@ -55,7 +55,9 @@ class Voronsoft_Due_Date_Calculator_Options_Page {
 			'voronsoft-due-date-calculator-settings',
 			array( $this, 'create_admin_page' )
 		);
+
 	}
+
 
 	/**
 	 * Options page callback
@@ -63,55 +65,63 @@ class Voronsoft_Due_Date_Calculator_Options_Page {
 	 * @since 1.0.0
 	 */
 	public function create_admin_page() {
-		$this->options = get_option( 'voronsoft_due_date_calc_option' ); ?>
+		$this->options = get_option( 'voronsoft_due_date_calc_option' );
+		
+		?>
 
 		<div class="wrap">
+
 			<h1><?php _e( 'Due Date Calculator Settings', 'voronsoft-due-date-calculator' ) ?></h1>
-			<form id="vddc-settings-form" method="post" action="">
+            <div id="hello"></div>
+
+
+            <template id="productrow" class="hide">
+				<tr class="form__line_clone type-row">
+					<td>
+						<input class="field_date form__field_validation"  name="vddc_period_dates[]" type="text" value="">
+						<div class="error-wrap"></div>
+					</td>
+					<td>
+						<textarea class="field_text_new"  id="" name="post_text"></textarea>
+						<div class="error-wrap"></div>
+					</td>
+					<td>
+						<a class="button_delete minus" href="#minus" targetDiv="" data-id="0">
+							<span class="bg" id="minus"></span>
+							<span class="symbol"></span>
+						</a>
+					</td>
+				</tr>
+            </template>
+            <button id="form-button__clone" class="button button-primary">Add Row</button>
+
+			
+			<form id="vddc-settings-form" method="post" action="options.php">
+                <div id="form__option_saved"><h2></h2></div>
 				<?php
+
 				// This prints out all hidden setting fields.
 				settings_fields( 'voronsoft_due_date_calc_option_group' ); ?>
 
 				<table id="js-vddc-setting-table" class="form-table">
 					<thead>
-						<tr>
+						<tr class="form__line_header">
 							<th>Period</th>
-							<th>Posts</th>
 							<th>Period Text</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php // @todo Fields must be rendered via AJAX ! ?>
 						<!-- Table demo -->
-						<tr>
-							<td><input style="padding: 1rem; width: 100%;" name="vddc_period_dates[]" type="text" value="1,2,3,4,5"></td>
-							<td><input style="padding: 1rem; width: 100%;" name="vddc_posts_ids[]" type="text" value="Select2 Posts"></td>
-							<td><textarea style="padding: 0.4rem; width: 100%;" name="vddc_period_text[]">djkfh gsdgksdhf gksdg kjdfsh gksdjfh gkjsdf hgksdljg hdksj ghdskfj gh</textarea></td>
-						</tr>
-						<tr>
-							<td><input style="padding: 1rem; width: 100%;" name="vddc_period_dates[]" type="text" value="1,2,3,4,5"></td>
-							<td><input style="padding: 1rem; width: 100%;" name="vddc_posts_ids[]" type="text" value="Select2 Posts"></td>
-							<td><textarea style="padding: 0.4rem; width: 100%;" name="vddc_period_text[]">djkfh gsdgksdhf gksdg kjdfsh gksdjfh gkjsdf hgksdljg hdksj ghdskfj gh</textarea></td>
-						</tr>
-						<tr>
-							<td><input style="padding: 1rem; width: 100%;" name="vddc_period_dates[]" type="text" value="1,2,3,4,5"></td>
-							<td><input style="padding: 1rem; width: 100%;" name="vddc_posts_ids[]" type="text" value="Select2 Posts"></td>
-							<td><textarea style="padding: 0.4rem; width: 100%;" name="vddc_period_text[]">djkfh gsdgksdhf gksdg kjdfsh gksdjfh gkjsdf hgksdljg hdksj ghdskfj gh</textarea></td>
-						</tr>
-						<tr>
-							<td><input style="padding: 1rem; width: 100%;" name="vddc_period_dates[]" type="text" value="1,2,3,4,5"></td>
-							<td><input style="padding: 1rem; width: 100%;" name="vddc_posts_ids[]" type="text" value="Select2 Posts"></td>
-							<td><textarea style="padding: 0.4rem; width: 100%;" name="vddc_period_text[]">djkfh gsdgksdhf gksdg kjdfsh gksdjfh gkjsdf hgksdljg hdksj ghdskfj gh</textarea></td>
-						</tr>
-						<tr>
-							<td><input style="padding: 1rem; width: 100%;" name="vddc_period_dates[]" type="text" value="1,2,3,4,5"></td>
-							<td><input style="padding: 1rem; width: 100%;" name="vddc_posts_ids[]" type="text" value="Select2 Posts"></td>
-							<td><textarea style="padding: 0.4rem; width: 100%;" name="vddc_period_text[]">djkfh gsdgksdhf gksdg kjdfsh gksdjfh gkjsdf hgksdljg hdksj ghdskfj gh</textarea></td>
-						</tr>
+						
 					</tbody>
+
 				</table>
-				<button id="js-vddc-submit" class="button button-primary"><?php _e( 'Save Settings', 'voronsoft-due-date-calculator' ); ?></button>
+				<button id="js-vddc-submit" class="button button-primary">
+                    <?php _e( 'Save Settings', 'voronsoft-due-date-calculator' ); ?>
+                </button>
 			</form>
+
 		</div>
 		<?php
 	}
