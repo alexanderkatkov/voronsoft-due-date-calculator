@@ -99,6 +99,12 @@ class Voronsoft_Due_Date_Calculator_Admin {
 		wp_enqueue_script( 'tinymce_js', includes_url( 'js/tinymce/' ) . 'wp-tinymce.php', array( 'jquery' ), false, true );
 		wp_enqueue_script('media-upload');
 		wp_enqueue_script('thickbox');
+		
+		if ( ! class_exists( '_WP_Editors', false ) ) {
+			require( ABSPATH . WPINC . '/class-wp-editor.php' );
+		}
+		add_action( 'admin_print_footer_scripts', array( '_WP_Editors', 'print_default_editor_scripts' ) );
+		wp_enqueue_editor();
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url(dirname(__FILE__)) . 'assets/js/voronsoft-due-date-calculator-admin.js', array( 'jquery' ), $this->version, false );
 		$flatpyramid_l10n = array(

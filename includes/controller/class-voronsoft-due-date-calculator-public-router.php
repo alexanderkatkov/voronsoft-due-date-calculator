@@ -41,10 +41,13 @@ class Flatpyramid_Public_Router {
 		));
 	}
 
+	public function wautop(&$item1, $key) {
+		$item1["Text"] = wpautop( stripslashes ( $item1["Text"] ) );
+	}
+
 	public function sendDb() {
-		// $hip = $_POST['hello'];
 		$hi = get_option('voronsoft_due_date_calc_option', $whatever);
-		$hi = json_decode(stripslashes(json_encode($hi)), true);
+		array_walk($hi, array( $this, "wautop" ));
 		// var_dump($hi);
 			wp_send_json_success(array(
 				'var' => $hi,

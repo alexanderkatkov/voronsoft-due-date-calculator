@@ -75,7 +75,7 @@ class Voronsoft_Due_Date_Calculator_Options_Page {
             <div id="hello"></div>
 
 
-            <template id="productrow" class="hide">
+            <template id="productrow">
 				<tr class="form__line_clone type-row">
 					<td>
 						<input class="field_date form__field_validation"  name="vddc_period_dates[]" type="text" value="">

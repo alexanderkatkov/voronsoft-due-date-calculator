@@ -28,7 +28,7 @@ jQuery( function( $ ) {
    * Although scripts in the WordPress core, Plugins and Themes may be
    * practising this, we should strive to set a better example in our own work.
    */
-$( function() {
+$( document ).ready( function() {
   var optObj = [],
   formLine = $( "#vddc-settings-form tbody" ),
   result = $( "#form__option_saved h2" ),
@@ -38,10 +38,11 @@ $( function() {
   cloneField = $( clone ).find( "input[type='text']" ),
   t = $( "#productrow" ).html(),
   tr = $( t ),
+  arrayId = [],
   btn = $( "#form-button__clone" );
 
-  function applyMCE() {
-    tinymce.init({
+  function applyMCE( ) {
+    tinyMCE.init({
       mode : "textareas",
       editor_selector : "field_text_new",
       entity_encoding: "raw",
@@ -55,11 +56,14 @@ $( function() {
         "fullscreen",
         "imageuploader",
         "media directionality",
-        "paste textcolor colorpicker hr"
+        "paste textcolor colorpicker hr",
+        "wpeditimage"
       ],
       toolbar1: "formatselect | bold italic  strikethrough  forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat | image | imageuploader"
     } );
   }
+  applyMCE();
+
   function AddRemoveTinyMce( editorId ) {
     if ( tinyMCE.get( editorId ) )  {
       tinyMCE.EditorManager.execCommand( "mceFocus", false, editorId );
@@ -69,23 +73,29 @@ $( function() {
     }
   }
 
-  applyMCE();
-  btn.off( "click" ).on( "click", function( e ) {
-    e.preventDefault();
+  function addRow( ) {
     var element = null;
     for ( var i = 0; i < 1; i++ ) {
         element = tr.clone();
-        var divId = "id_" + $.now();
+        var index = ( index ) ? index : formLine.find( ".type-row" ).length;
+        var divId = "id_" + index;
         element.attr( "id", divId );
         element.find( "#minus" ).attr( "targetDiv", divId );
-        element.find( ".field_text_new" ).attr( "id", "txt_" + divId );
+        element.find( ".field_text_new" ).attr( "id", "row_" + divId );
         element.appendTo( formLine );
-        AddRemoveTinyMce( "txt_" + divId );
+        AddRemoveTinyMce( "row_" + divId );
     }
+    console.log( index );
+  }
+
+
+  btn.off( "click" ).on( "click", function( e ) {
+    e.preventDefault();
+    addRow();
   } );
 
 
-  $( window ).load( function() {
+  $( window ).load( function( ) {
     var updateHandler = $.ajax( {
       type: "POST",
       url: ajaxurl,
@@ -97,28 +107,13 @@ $( function() {
         console.log( response );
         if ( response.data.var ) {
           var d = response.data.var;
-          var bitch = d.map( function( a ) {
-            var html;
-            console.log( a.Text );
-            html = "<tr class='form__line_clone bitch'>";
-            html += '<td>';
-            html += '<input class="field_date form__field_validation"  name="vddc_period_dates[]" type="text"' +
-              ' value="' + a.Weeks + '">';
-            html += '</td>';
-            html += '<td>';
-            html += '<textarea class="field_text_new form__field_validation"  name="vddc_period_text[]" value="">' + a.Text + '</textarea>';
-            html += '</td>';
-            html += '<td>';            
-            html += "<a class='button_delete minus' href='#minus'>";
-            html += "<span class='bg' id='minus'></span>";
-            html += "<span class='symbol'></span>";
-            html += "<a/>";
-            html += '</td>';
-            html += '</tr>';
-            formLine.append( html );
+          var bitch = d.map( function( a, index ) {
+            addRow();
+            $( "#id_" + index ).find( ".field_text_new" ).val( a.Text );
+            $( "#id_" + index ).find( ".field_date" ).val( a.Weeks );
           } );
       } else {
-        tr.clone().appendTo( formLine );
+        addRow();
       }
     },
     complete: function() {
@@ -145,8 +140,8 @@ $( function() {
     $( ".form__line_clone" ).each( function() {
       var date = $( this ).find( ".field_date" ).val();
       var togo = $( this ).find( ".field_text_new" ).attr( "id" );
-      var tyVal = tinyMCE.get( togo ).getContent( );
-      console.log( tyVal );
+      var tyVal = wp.editor.getContent( togo );
+      console.log( date );
       row = {
         "Weeks": date,
         "Text": tyVal

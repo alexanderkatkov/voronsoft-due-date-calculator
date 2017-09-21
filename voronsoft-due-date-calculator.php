@@ -57,6 +57,8 @@ register_deactivation_hook( __FILE__, 'deactivate_voronsoft_due_date_calculator'
  */
 require plugin_dir_path( __FILE__ ) . 'includes/class-voronsoft-due-date-calculator.php';
 
+require_once plugin_dir_path( __FILE__ ) . 'public/shortcode.php';
+
 /**
  * Begins execution of the plugin.
  *
