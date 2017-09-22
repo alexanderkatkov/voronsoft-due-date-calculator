@@ -8,15 +8,14 @@
 */
 
 // Example 1 : WP Shortcode to display form on any page or post.
+
     function form_creation(){
-        $top = get_option( 'voronsoft_due_date_calc_option' );
-        foreach ($top as $key => $value) {
-            var_dump($value["Weeks"]); 
-        }
-        
     ?>
-    <form>
-    Неделя: <input type="text" name="firstname"><br>
+    <form id="calculator">
+    <input type="text" id="calendar" class="calendar" />
+    <div class="form__todate"></div>
+    Weeks: <input class="form__weeks" type="text" name="firstname"><br>
+    Birthday: <input class="form__birthday" type="text"><br> 
             <input type="submit" value="Jmi">
     Пост    <div class="post"></div>
     </form>

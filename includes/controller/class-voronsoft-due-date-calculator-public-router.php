@@ -48,10 +48,23 @@ class Flatpyramid_Public_Router {
 	public function sendDb() {
 		$hi = get_option('voronsoft_due_date_calc_option', $whatever);
 		array_walk($hi, array( $this, "wautop" ));
-		// var_dump($hi);
-			wp_send_json_success(array(
-				'var' => $hi,
-			));
+		wp_send_json_success(array(
+			'var' => $hi,
+		));
+	}
+
+	public function formFilter() {
+		$weekCount = $_POST['weekCount'];
+		$form = get_option('voronsoft_due_date_calc_option');
+		array_walk($form, array( $this, "wautop" ));
+		$new = array_filter($form, function($v, $k) use ($weekCount) {			
+			return $v["Weeks"] == $weekCount;
+		}, ARRAY_FILTER_USE_BOTH );
+		$new = array_values($new);
+		$text = $new[0]["Text"];
+		wp_send_json_success(array(
+			'form' => $text,
+		));
 	}
 
 	private function get_product_data() {

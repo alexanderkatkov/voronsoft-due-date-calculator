@@ -49,6 +49,7 @@ $( document ).ready( function() {
       fix_list_elements : true,
       element_format : 'html',
       remove_linebreaks: false,
+      relative_urls : false,
       forced_root_block : 'p',
       skin: "gradient",
       plugins: [
