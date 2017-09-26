@@ -42,6 +42,7 @@ $( document ).ready( function() {
   btn = $( "#form-button__clone" );
 
   function applyMCE( ) {
+    tinymce.PluginManager.load('imageuploader', flatpyramid_l10n.tiny_plugin);
     tinyMCE.init({
       mode : "textareas",
       editor_selector : "field_text_new",
@@ -51,11 +52,10 @@ $( document ).ready( function() {
       remove_linebreaks: false,
       relative_urls : false,
       forced_root_block : 'p',
-      skin: "gradient",
       plugins: [
         "wordpress lists image charmap hr ",
         "fullscreen",
-        "imageuploader",
+        "-imageuploader",
         "media directionality",
         "paste textcolor colorpicker hr",
         "wpeditimage"

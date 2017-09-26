@@ -97,6 +97,8 @@ class Voronsoft_Due_Date_Calculator_Admin {
 		 * class.
 		 */
 		wp_enqueue_script( 'tinymce_js', includes_url( 'js/tinymce/' ) . 'wp-tinymce.php', array( 'jquery' ), false, true );
+		wp_enqueue_script( 'imageuploader_js', plugin_dir_url(dirname(__FILE__)) . 'plugins/imageuploader/plugin.js', array( 'jquery' ), false, true );
+
 		wp_enqueue_script('media-upload');
 		wp_enqueue_script('thickbox');
 		
@@ -106,9 +108,10 @@ class Voronsoft_Due_Date_Calculator_Admin {
 		add_action( 'admin_print_footer_scripts', array( '_WP_Editors', 'print_default_editor_scripts' ) );
 		wp_enqueue_editor();
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url(dirname(__FILE__)) . 'assets/js/voronsoft-due-date-calculator-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name . "-admin", plugin_dir_url(dirname(__FILE__)) . 'assets/js/voronsoft-due-date-calculator-admin.js', array( 'jquery' ), $this->version, false );
 		$flatpyramid_l10n = array(
 			'ajax_url' => admin_url('admin-ajax.php'),
+			'tiny_plugin' => plugin_dir_url(dirname(__FILE__)) . 'plugins/imageuploader/plugin.js'
 		);
 		wp_localize_script( 'voronsoft-due-date-calculator-admin', 'flatpyramid_l10n', $flatpyramid_l10n);
 	}
