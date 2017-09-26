@@ -91,7 +91,6 @@ $( document ).ready( function() {
         element.appendTo( formLine );
         AddRemoveTinyMce( "row_" + divId );
     }
-    console.log( index );
   }
 
   btn.on( "click", function( e ) {
@@ -110,7 +109,6 @@ $( document ).ready( function() {
         vs_action: "sendDb"
       },
       success: function( response ) {
-        console.log( response );
         if ( response.data.var ) {
           var d = response.data.var;
           var bitch = d.map( function( a, index ) {
@@ -130,7 +128,7 @@ $( document ).ready( function() {
 
   $( "#vddc-settings-form" ).on( "click", ".minus", function( e, index ) {
     e.preventDefault();
-    var didConfirm = confirm("Are you sure You want to delete this row?");
+    var didConfirm = confirm( "Are you sure You want to delete this row?" );
     if ( didConfirm == true ) {
       var id = $( this ).attr( "data-id" );
       var targetDiv = $( this ).attr( "targetDiv" );
@@ -152,7 +150,6 @@ $( document ).ready( function() {
       var date = $( this ).find( ".field_date" ).val();
       var togo = $( this ).find( ".field_text_new" ).attr( "id" );
       var tyVal = wp.editor.getContent( togo );
-      console.log( date );
       row = {
         "Weeks": date,
         "Text": tyVal
@@ -160,7 +157,7 @@ $( document ).ready( function() {
       optObj.push( row );
     } );
     if ( $( "input[type='text']" ).hasClass( "error" ) || $( "textarea" ).hasClass( "error" ) ) {
-      $( ".error" ).next( error ).text( "Поле не должно быть пустым" );
+      $( ".error" ).next( error ).text( "Empty field" );
       return;
     } else {
       var optionHandler = $.ajax( {
@@ -173,7 +170,6 @@ $( document ).ready( function() {
         },
         success: function( response ) {
           $( result ).append( response.data.message );
-          console.log( response );
         },
         complete: function() {
           $( resultWrapper ).fadeIn();

@@ -72,7 +72,10 @@ class Voronsoft_Due_Date_Calculator_Options_Page {
 		<div class="wrap">
 
 			<h1><?php _e( 'Due Date Calculator Settings', 'voronsoft-due-date-calculator' ) ?></h1>
-            <div id="hello"></div>
+			<div class="form__shortcode">
+					<?php  echo '<div>' . esc_html__( 'Use this shortcode to display the calculator:', 'voronsoft-due-date-calculator' ) . '</div>'; ?>
+					<?php  echo '<div class="form_st">' . esc_html__( '[pregnancy_calculator]', 'voronsoft-due-date-calculator' ) . '</div>'; ?>
+			</div>
 
 
             <template id="productrow">
@@ -97,6 +100,7 @@ class Voronsoft_Due_Date_Calculator_Options_Page {
 
 			
 			<form id="vddc-settings-form" method="post" action="options.php">
+			
                 <div id="form__option_saved"><h2></h2></div>
 				<?php
 

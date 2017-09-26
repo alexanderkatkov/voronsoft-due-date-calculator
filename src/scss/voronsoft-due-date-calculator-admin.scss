@@ -108,3 +108,18 @@
 .hide {
   display: none;
 }
+.form__shortcode {
+  display: flex;
+  font-size: 1.3em;
+  font-weight: bold;
+  align-items: baseline;
+  .form_st {
+    padding: 0.5em;
+    background: #0073aa;
+    color: #fff;
+    border: 1px solid #A5A5A5;
+    margin-bottom: 10px;
+    box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset, 0px 0px 0px 3px #fefefe, 0px 0px 3px 3px #d2d2d2;
+    margin-left: 1em;
+  }
+}

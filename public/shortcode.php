@@ -39,5 +39,5 @@
     </div>
     <?php
     }
-    add_shortcode('test', 'form_creation');
+    add_shortcode('pregnancy_calculator', 'form_creation');
     ?>

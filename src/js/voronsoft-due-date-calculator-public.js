@@ -52,10 +52,9 @@ $( document ).ready( function() {
 			var dateNow, sip, weeks, days, current, text, birthday, birthOutput, b;
 
 			//Get date from Calendar
+			
 			b = moment( date[ 0 ]._i );
-			console.log( b );
 			$( ".vsc__date" ).append( b.format( "MMMM DD, YYYY" ) );
-			console.log( b );
 			dateNow = moment( new Date() );
 			sip = dateNow.diff( b, "d" );
 			$( ".vsc__error" ).fadeOut();
@@ -64,7 +63,6 @@ $( document ).ready( function() {
 			current = sip - days;
 			text = "You are <span>" + weeks + " weeks</span> and <span>" + current + " days</span> pregnant";
 			birthday = b.add( 301, "days" ).format( "MMMM DD, YYYY" );
-			console.log( birthday );
 			birthOutput = "The baby will be born in <span>" + birthday + "</span>";
 
 			//Append values to elements
