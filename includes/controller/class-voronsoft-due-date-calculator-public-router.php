@@ -34,8 +34,8 @@ class Flatpyramid_Public_Router {
 	}
 
 	public function wpa_49691(){
-		$whatever = $_POST['whatever'];
-		update_option( 'voronsoft_due_date_calc_option', $whatever );
+		$option = $_POST['option'];
+		update_option( 'voronsoft_due_date_calc_option', $option );
 		wp_send_json_success(array(
 			'message' => __( 'Settings Saved', 'voronsoft-due-date-calculator' ),
 		));
@@ -46,10 +46,10 @@ class Flatpyramid_Public_Router {
 	}
 
 	public function sendDb() {
-		$hi = get_option('voronsoft_due_date_calc_option', $whatever);
-		array_walk($hi, array( $this, "wautop" ));
+		$getOption = get_option('voronsoft_due_date_calc_option', $option);
+		array_walk($getOption, array( $this, "wautop" ));
 		wp_send_json_success(array(
-			'var' => $hi,
+			'var' => $getOption,
 		));
 	}
 
@@ -68,7 +68,7 @@ class Flatpyramid_Public_Router {
 	}
 
 	private function get_product_data() {
-		$controller = new Fp_Woocommerce_Controller();
+		$controller = new Fp_vsc_Controller();
 		$controller->get_product_data( $this->request );
 	}
 }

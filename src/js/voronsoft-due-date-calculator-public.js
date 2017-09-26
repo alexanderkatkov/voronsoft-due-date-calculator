@@ -29,64 +29,71 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 $( document ).ready( function() {
-	var form = $( "#calculator" ),
-		submit = form.find( "input[type='submit']" ),
-		inputWeeks = form.find( ".form__weeks" ),
-		sendText = form.find( ".post" );
+	var form = $( ".vsc__wrapper" ),
+		inputWeeks = form.find( ".vsc__weeks" ),
+		sendText = form.find( ".vsc__post" );
 
-	// $.datepicker.setDefaults({
-	// 	showOn: "button",
-	// 	buttonImage: "/img/calendar.svg",
-	// 	dateFormat: 'dd-mm-yy',
-	// 	firstDay: 1,
-	// 	showAnim: 'slideDown',
-	// 	isRTL: false,
-	// 	showMonthAfterYear: false,
-	// 	yearSuffix: ''
-	// } );
-
-	// $( ".date, .datepicker" ).datepicker( { dateFormat: "dd/mm/yy" } );
-	$( "#calendar" ).pignoseCalendar( {
+	$( ".calendar" ).pignoseCalendar( {
+		theme: "blue",
 		modal: true,
 		buttons: true,
+		maxDate: moment( new Date() ),
+		minDate: moment( new Date() ).subtract( 301, "days" ),
 		apply: function( date ) {
-			var b = date[ 0 ];
-			var date = moment( new Date() );			
-			var sip = date.diff( b, "d");
-			var weeks = Math.floor(sip/7);
-			var days = weeks*7;
-			var current = sip - days;
-			var text = weeks + " week and " + current + " days";
-			console.log( text );
-			var birthday = b.add(281, "days").format("MMMM DD, YYYY");
 
+			//Clear div's
+
+			$( ".vsc__date" ).empty();
+			$( ".vsc__todate" ).empty();
+			$( ".vsc__birthday" ).empty();
+
+			//Variables
+
+			var dateNow, sip, weeks, days, current, text, birthday, birthOutput, b;
+
+			//Get date from Calendar
+			b = moment( date[ 0 ]._i );
+			console.log( b );
+			$( ".vsc__date" ).append( b.format( "MMMM DD, YYYY" ) );
+			console.log( b );
+			dateNow = moment( new Date() );
+			sip = dateNow.diff( b, "d" );
+			$( ".vsc__error" ).fadeOut();
+			weeks = Math.floor( sip / 7 );
+			days = weeks * 7;
+			current = sip - days;
+			text = "You are <span>" + weeks + " weeks</span> and <span>" + current + " days</span> pregnant";
+			birthday = b.add( 301, "days" ).format( "MMMM DD, YYYY" );
 			console.log( birthday );
+			birthOutput = "The baby will be born in <span>" + birthday + "</span>";
 
-			$( ".form__todate" ).append( text );
-			$( ".form__birthday" ).val( birthday );
-			$( ".form__weeks" ).val( weeks );
+			//Append values to elements
+
+			$( ".vsc__todate" ).append( text );
+			$( ".vsc__birthday" ).append( birthOutput );
+			$( ".vsc__weeks" ).val( weeks );
+			$( ".vsc__wprapper_info" ).fadeIn();
+			sendForm();
 		}
 	} );
 
-	submit.click( function( e ) {
-		e.preventDefault();
+	function sendForm() {
+		var sendWeeks;
 		$( sendText ).empty();
-		var weeks = inputWeeks.val();
-		console.log( weeks );
+		sendWeeks = inputWeeks.val();
 		var weekHandler = $.ajax( {
 			type: "POST",
 			url: flatpyramid_l10n.ajax_url,
 			data: {
 				action: "handle_request",
 				vs_action: "formFilter",
-				weekCount: weeks
+				weekCount: sendWeeks
 			},
 			success: function( response ) {
-				console.log( response );
 				$( sendText ).append( response.data.form );
 			}
 		} );
-	} );
+	};
 
 } );
 } )( jQuery );

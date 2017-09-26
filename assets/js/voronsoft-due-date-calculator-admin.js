@@ -63,16 +63,21 @@ $( document ).ready( function() {
       toolbar1: "formatselect | bold italic  strikethrough  forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat | image | imageuploader"
     } );
   }
-  applyMCE();
 
   function AddRemoveTinyMce( editorId ) {
     if ( tinyMCE.get( editorId ) )  {
+      
       tinyMCE.EditorManager.execCommand( "mceFocus", false, editorId );
       tinyMCE.EditorManager.execCommand( "mceRemoveEditor", true, editorId );
+
     } else {
+
       tinymce.EditorManager.execCommand( "mceAddEditor", false, editorId );
+
     }
   }
+
+  applyMCE();
 
   function addRow( ) {
     var element = null;
@@ -81,7 +86,7 @@ $( document ).ready( function() {
         var index = ( index ) ? index : formLine.find( ".type-row" ).length;
         var divId = "id_" + index;
         element.attr( "id", divId );
-        element.find( "#minus" ).attr( "targetDiv", divId );
+        element.find( ".minus" ).attr( "targetDiv", divId );
         element.find( ".field_text_new" ).attr( "id", "row_" + divId );
         element.appendTo( formLine );
         AddRemoveTinyMce( "row_" + divId );
@@ -89,10 +94,10 @@ $( document ).ready( function() {
     console.log( index );
   }
 
-
-  btn.off( "click" ).on( "click", function( e ) {
+  btn.on( "click", function( e ) {
     e.preventDefault();
     addRow();
+    applyMCE();
   } );
 
 
@@ -123,12 +128,17 @@ $( document ).ready( function() {
   } );
 } );
 
-  $( "#vddc-settings-form" ).on( "click", ".minus", function( e ) {
+  $( "#vddc-settings-form" ).on( "click", ".minus", function( e, index ) {
     e.preventDefault();
-    $( this ).closest( "tr" ).fadeTo( 400, 0, function() {
-      $( this ).remove();
-      console.log( $( this ) );
-    } );
+    var didConfirm = confirm("Are you sure You want to delete this row?");
+    if ( didConfirm == true ) {
+      var id = $( this ).attr( "data-id" );
+      var targetDiv = $( this ).attr( "targetDiv" );
+      $( "#" + targetDiv ).remove();
+    return true;
+    } else {
+      return false;
+    }
   } );
 
   //Save settings
@@ -159,7 +169,7 @@ $( document ).ready( function() {
         data: {
           action: "handle_request",
           vs_action: "wpa_49691",
-          whatever: optObj
+          option: optObj
         },
         success: function( response ) {
           $( result ).append( response.data.message );
