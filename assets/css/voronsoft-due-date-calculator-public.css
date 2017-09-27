@@ -489,7 +489,7 @@
 }
 
 .vsc__wrapper {
-  margin: 0 auto;
+  margin: 0 0 2em 0;
   background: #f7f7f7;
   border: 1px solid rgba(211, 127, 159, 0.5);
   box-shadow: 0 2px 5px rgba(105, 108, 109, 0.7), 0 0 8px 5px rgba(208, 223, 226, 0.4) inset;
@@ -594,5 +594,17 @@
 
 .pignose-calendar-wrapper .pignose-calendar-top {
   background-color: #c75f85 !important;
+}
+
+@media screen and (max-width: 480px) {
+  .vsc__wrapper .calendar .vsc__date {
+    font-size: 1.5em;
+  }
+}
+
+@media screen and (max-width: 374px) {
+  .vsc__wrapper .calendar .vsc__date {
+    font-size: 1em;
+  }
 }
 /*# sourceMappingURL=voronsoft-due-date-calculator-public.css.map */

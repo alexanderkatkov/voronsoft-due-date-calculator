@@ -16,7 +16,7 @@
     <div class="vsc__wrapper">
         <form id="calculator">
             <h3>
-                <?php  _e( 'Select the date of the first day of your last menstrual period (LMP):', 'voronsoft-due-date-calculator' ); ?>
+                <?php  _e( 'First day of your last period:', 'voronsoft-due-date-calculator' ); ?>
             </h3>
             <div class="vsc__error">
                 <?php  _e( 'Invalid Date', 'voronsoft-due-date-calculator' ); ?>
@@ -25,7 +25,7 @@
                 <div class="calendar">
                     <img src="<?php echo plugin_dir_url(dirname(__FILE__)) ?>/img/icons8-Calendar.svg">
                     <div class="vsc__date">
-                    <?php  _e( ' Day/Month/Year', 'voronsoft-due-date-calculator' ); ?>
+                    <?php  _e( 'Click to select', 'voronsoft-due-date-calculator' ); ?>
                     </div>
                 </div>
                 <input type="text" class="vsc__weeks hide">

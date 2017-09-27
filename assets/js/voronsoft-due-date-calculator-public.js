@@ -49,19 +49,25 @@ $( document ).ready( function() {
 
 			//Variables
 
-			var dateNow, sip, weeks, days, current, text, birthday, birthOutput, b;
+			var dateNow, sip, weeks, days, current, text, birthday, birthOutput, b, dWeeks;
 
 			//Get date from Calendar
-			
+
 			b = moment( date[ 0 ]._i );
 			$( ".vsc__date" ).append( b.format( "MMMM DD, YYYY" ) );
 			dateNow = moment( new Date() );
 			sip = dateNow.diff( b, "d" );
 			$( ".vsc__error" ).fadeOut();
-			weeks = Math.floor( sip / 7 );
-			days = weeks * 7;
+			weeks = Math.ceil( sip / 7 );
+			dWeeks = Math.floor( sip / 7 );
+			days = dWeeks * 7;
 			current = sip - days;
-			text = "You are <span>" + weeks + " weeks</span> and <span>" + current + " days</span> pregnant";
+			if ( weeks === 0 && current === 0 ) {
+				weeks = 1;
+				text = "You are pregnant <span> One Day </span>";
+			} else {
+				text = "You are <span>" + dWeeks + " weeks</span> and <span>" + current + " days</span> pregnant";
+			}
 			birthday = b.add( 301, "days" ).format( "MMMM DD, YYYY" );
 			birthOutput = "The baby will be born in <span>" + birthday + "</span>";
 

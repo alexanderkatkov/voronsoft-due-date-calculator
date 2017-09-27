@@ -5,7 +5,7 @@
  @import "../vendor/pg-calendar/dist/css/pignose.calendar.scss";
 
  .vsc__wrapper {
-    margin: 0 auto;
+    margin: 0 0 2em 0;
     background: rgb(247, 247, 247);
     border: 1px solid rgba(211, 127, 159, 0.5);
     box-shadow: 0pt 2px 5px rgba(105, 108, 109, 0.7), 0px 0px 8px 5px rgba(208, 223, 226, 0.4) inset;
@@ -39,7 +39,12 @@
         .vsc__date {
             font-size: 2em;
             font-weight: bold;
-
+            @media screen and (max-width: 480px){
+                font-size: 1.5em;
+            }
+            @media screen and (max-width: 374px) {
+                font-size: 1em;
+            }
         }
     }
     .vsc__wprapper_info {
@@ -103,3 +108,4 @@
         background-color: #c75f85 !important;
     }
 }
+
